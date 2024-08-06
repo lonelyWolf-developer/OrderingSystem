@@ -48,6 +48,7 @@
                 
                 <?php if($user->role == Roles::Admin->value): ?>
                     <a href="./addUser.php" class="userButton">Vytvořit uživatele</a>
+                    <a href="./allUsers.php" class="userButton">Všichni uživatelé</a>
                 <?php endif; ?>
                 <a href="./changePasswordForm.php" class="userButton">Změnit heslo</a>
                 <a href="./logOut.php" class="userButton">Odhlásit se</a>

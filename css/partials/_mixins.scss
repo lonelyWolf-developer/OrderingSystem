@@ -1,0 +1,7 @@
+@mixin MainHeader{
+    h1{
+        color: $primary;
+        margin-bottom: 10px;
+        font-size: 40px;
+    }
+}
