@@ -131,6 +131,61 @@ body {
   background: blueviolet;
 }
 
+.allUsers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 1000px;
+  margin-bottom: 30px;
+}
+.allUsers h1 {
+  color: rgb(233, 224, 179);
+  margin-bottom: 10px;
+  font-size: 40px;
+}
+.allUsers .row {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bolder;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  background: rgb(233, 224, 179);
+}
+.allUsers .row .userInfo {
+  width: 100px;
+  text-align: center;
+  color: rgb(32, 30, 30);
+}
+.allUsers .row .userInfo .statusButton {
+  background: rgb(32, 30, 30);
+  color: rgb(233, 224, 179);
+  width: 90px;
+  height: 25px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+.allUsers .row .userInfo .statusButton:hover {
+  cursor: pointer;
+  transition: 0.5s;
+  background: rgb(233, 224, 179);
+  color: rgb(32, 30, 30);
+}
+.allUsers .row .emailInfo {
+  width: 300px;
+}
+.allUsers .row .roleInfo {
+  width: 180px;
+}
+
 .sentOrder, .loginForm, .createUser, .changePassword {
   display: flex;
   flex-direction: column;

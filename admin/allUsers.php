@@ -56,23 +56,23 @@
                         <div class="row">
                             <div class="userInfo"><?= $onlyUser->name ?></div>
                             <div class="userInfo"><?= $onlyUser->surname ?></div>
-                            <div class="userInfo"><?= $onlyUser->email ?></div>
-                            <div class="userInfo"><?= $onlyUser->role ?></div>
+                            <div class="userInfo emailInfo"><?= $onlyUser->email ?></div>
+                            <div class="userInfo roleInfo"><?= $onlyUser->role ?></div>
                             <div class="userInfo"><?= $onlyUser->status ?></div>
-                            <div class="statusButton">
+                            <div class="userInfo">
                                 <form action="" method="post">
                                     <input type="hidden" name="id" value="<?= $onlyUser->id ?>">
                                     <?php if($onlyUser->status == UserStatus::Normal->name): ?>
-                                        <input type="submit" value="Zablokovat">
+                                        <input type="submit" value="Zablokovat" class="statusButton">
                                     <?php else: ?>
-                                        <input type="submit" value="Odblokovat">
+                                        <input type="submit" value="Odblokovat" class="statusButton">
                                     <?php endif; ?>
                                 </form>
                             </div>
                         </div>
                     <?php endforeach ?>
                 <?php else: ?>
-                    <p>Nemáš žádné uživatele.</p>
+                    <p class="notice">Nemáš žádné uživatele.</p>
                 <?php endif; ?>
             </section>
         </div>

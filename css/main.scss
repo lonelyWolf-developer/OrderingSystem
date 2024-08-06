@@ -33,6 +33,7 @@ body{
     font-size: 20px;
 }
 
+// User account
 .userButtons{
     display: flex;
     flex-direction: column;
@@ -64,29 +65,14 @@ body{
     }
 }
 
-.writeOrders {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 1000px;
-    margin-bottom: 30px;
 
+// Writing orders
+.writeOrders {
+    @include MainSectionSetting();
     @include MainHeader();
 
     .row {
-        width: 100%;
-        height: 35px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 20px;
-        font-weight: bolder;
-        padding-left: 5px;
-        padding-right: 5px;
-        margin-bottom: 3px;
-        border-radius: 5px;
+    @include RowSetting();
 
         &:hover{
             opacity: 0.6;
@@ -98,20 +84,7 @@ body{
             text-align: center;
 
             .deleteSubmit{
-                background: $secondary;
-                color: $primary;
-                width: 90px;
-                height: 25px;
-                border: none;
-                outline: none;
-                border-radius: 5px;
-
-                &:hover{
-                    cursor: pointer;
-                    transition: 0.5s;
-                    background: $primary;
-                    color: $secondary;
-                }
+                @include DeleteButton();
             }
         }
 
@@ -146,6 +119,37 @@ body{
     }
 }
 
+// Writing users
+.allUsers{
+    @include MainSectionSetting();
+    @include MainHeader();
+    .row{
+      @include RowSetting();
+      background: $primary;
+
+      .userInfo{
+        width: 100px;
+        text-align: center;
+        color: $secondary;
+
+        .statusButton{
+            @include DeleteButton();
+        }
+      }
+
+      .emailInfo{
+        width: 300px;
+      }
+
+      .roleInfo{
+        width: 180px;
+      }
+    }
+    
+
+}
+
+// Forms
 .sentOrder, .loginForm, .createUser, .changePassword {
     display: flex;
     flex-direction: column;
