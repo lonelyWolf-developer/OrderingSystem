@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $email = new Email();
     $email->subject = "Nová objednávka.";
-    $email->message = "Uživatel ".$user->email." vytvořil objednávku ".$contract->orderNumber;
+    $email->message = "Uživatel " . $user->email . " vytvořil objednávku " . $contract->orderNumber . ".";
 
     if(!$contract->checkExistContract($connection, $contract->orderNumber)){
         if ($contract->createContract($connection, $contract->orderNumber, $contract->type, $contract->date, $contract->time, $contract->user, $contract->status)) {

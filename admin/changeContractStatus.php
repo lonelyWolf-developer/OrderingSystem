@@ -8,6 +8,7 @@ require "../classes/Url.php";
 require "../classes/User.php";
 require "../classes/Auth.php";
 require "../classes/Message.php";
+require "../classes/Email.php";
 
 $database = new Database();
 $connection = $database->connectionDB();
@@ -23,6 +24,22 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and Auth::isLoggedIn()){
 
     if($contract->changeStatus($connection, $contract->id, $contract->status, $contract->changingUser)){
         $message->createMessageSession("Objednávka byla úspěšně smazána.", MessageType::Success->value);
+
+        if($contract->status == ContractStatus::Cancelled->value){
+            $user = new User();
+            $email = new Email();
+
+            $contract->orderNumber = $contract->getOrderNumber($connection, $contract->id);
+
+            $user->id = $contract->changingUser;
+            $user->email = $user->getUserEmail($connection, $user->id);
+
+            $email->subject = "Zrušení požadavku na vyskladnění.";
+            $email->message = "Uživatel " . $user->email . " zrušil požadavek na vyskladnění zakázky " . $contract->orderNumber . ".";
+
+            $email->sentEmail($email);
+        }
+
         Url::redirectUrl("/OrderingSystem");
     }else{
         $message->createMessageSession("Jejda, něco se nepovedlo.", MessageType::Failure->value);

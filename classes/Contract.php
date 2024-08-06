@@ -133,6 +133,23 @@ class Contract {
             echo $e->getMessage();
         }
     }
+
+    function getOrderNumber($connection, $id){
+        $sql = "SELECT ordernumber FROM product WHERE id = :id";
+
+        $stmt = $connection->prepare($sql);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+        try{
+            if($stmt->execute()){
+                $result = $stmt->fetch();                
+                return $result[0];
+            }
+        }catch(Exception $e){
+            error_log($e->getMessage(), 3, "../errors/error.log");
+            echo $e->getMessage();
+        }
+    }
 }
 
 ?>
