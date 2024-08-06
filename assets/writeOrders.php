@@ -36,6 +36,6 @@
             </div>
         <?php endforeach ?>
     <?php else: ?>
-        <p>Zatím si nikdo nic neobjednal...</p>
+        <p class="notice">Zatím si nikdo nic neobjednal...</p>
     <?php endif; ?>
 </section>
