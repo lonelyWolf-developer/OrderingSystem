@@ -6,6 +6,11 @@ enum Roles: int{
     case Warehouseman = 2;
 }
 
+enum UserStatus: int{
+    case Normal = 0;
+    case Blocked = 1;
+}
+
 class User{
     public $id;
     public $name;
@@ -14,8 +19,8 @@ class User{
     public $password;
     public $role;
 
-   function createUser($connection, $name, $surname, $email, $password, $role){
-        $sql = "INSERT INTO user (name, surname, email, password, role) VALUES (:name, :surname, :email, :password, :role)";
+   function createUser($connection, $name, $surname, $email, $password, $role, $status = UserStatus::Normal->value){
+        $sql = "INSERT INTO user (name, surname, email, password, role, status) VALUES (:name, :surname, :email, :password, :role, :status)";
 
         $stmt = $connection->prepare($sql);
 
@@ -24,6 +29,7 @@ class User{
         $stmt->bindValue(":email", $email, PDO::PARAM_STR);
         $stmt->bindValue(":password", $password, PDO::PARAM_STR);
         $stmt->bindValue(":role", $role, PDO::PARAM_INT);
+        $stmt->bindValue(":status", $status, PDO::PARAM_INT);
 
         try{
             if($stmt->execute()){
@@ -37,8 +43,14 @@ class User{
         }       
     }
 
+    static function getAllUsers($connection, $collumns = "*"){
+        $sql = "SELECT $collumns FROM user";
+
+        return $connection->query($sql)->fetchAll();
+    }
+
     static function authentication($connection, $loginEmail, $loginPassword){
-        $sql = "SELECT password FROM user WHERE email = :email";
+        $sql = "SELECT password, status FROM user WHERE email = :email";
 
         $stmt = $connection->prepare($sql);
 
@@ -46,7 +58,7 @@ class User{
 
         try{
             if($stmt->execute() and $user = $stmt->fetch()){                
-                return password_verify($loginPassword, $user[0]);
+                return password_verify($loginPassword, $user[0]) and $user[1] != UserStatus::Blocked->value;
             }else{
                 throw new Exception("Autentikace se nezdařila.");
             }
