@@ -24,21 +24,24 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and Auth::isLoggedIn()){
 
     if($contract->changeStatus($connection, $contract->id, $contract->status, $contract->changingUser)){
         $message->createMessageSession("Objednávka byla úspěšně smazána.", MessageType::Success->value);
+        
+        $user = new User();
+        $email = new Email();
+
+        $contract->orderNumber = $contract->getOrderNumber($connection, $contract->id);
+
+        $user->id = $contract->changingUser;
+        $user->email = $user->getUserEmail($connection, $user->id);
 
         if($contract->status == ContractStatus::Cancelled->value){
-            $user = new User();
-            $email = new Email();
-
-            $contract->orderNumber = $contract->getOrderNumber($connection, $contract->id);
-
-            $user->id = $contract->changingUser;
-            $user->email = $user->getUserEmail($connection, $user->id);
-
             $email->subject = "Zrušení požadavku na vyskladnění.";
             $email->message = "Uživatel " . $user->email . " zrušil požadavek na vyskladnění zakázky " . $contract->orderNumber . ".";
-
-            $email->sentEmail($email);
+        }else{
+            $email->subject = "Vyskladnění zakázky dokončeno.";
+            $email->message = "Uživatel " . $user->email . " právě vyskladnil zakázku " . $contract->orderNumber . ".";
         }
+
+        $email->sentEmail($email);        
 
         Url::redirectUrl("/OrderingSystem");
     }else{
