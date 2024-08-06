@@ -1,0 +1,11 @@
+header {
+  background: rgb(233, 224, 179);
+  margin-bottom: 20px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 15px;
+  padding-right: 15px;
+}/*# sourceMappingURL=header.css.map */

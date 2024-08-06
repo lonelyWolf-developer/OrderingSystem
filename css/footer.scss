@@ -1,0 +1,12 @@
+@import "./partials/variables";
+@import "./partials/functions";
+@import "./partials/mixins";
+
+footer {
+    background: $primary;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

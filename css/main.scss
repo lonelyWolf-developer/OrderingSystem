@@ -1,0 +1,261 @@
+@import "./partials/variables";
+@import "./partials/functions";
+@import "./partials/mixins";
+
+// General settings
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)), url("../img/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+// Container
+.container {
+    max-width: 1200px;
+    min-height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.userButtons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+
+    h1{
+        color: $primary;
+        margin-bottom: 10px;
+        font-size: 40px;
+    }
+
+    .userButton{
+        display: block;
+        text-decoration: none;
+        color: $primary;
+        background: $secondary;
+        width: 180px;
+        height: 30px;
+        margin-bottom: 5px;
+        font-size: 20px;
+        text-align: center;
+        padding-top: 2px;
+        border-radius: 10px;
+
+        &:hover{
+            transition: 0.5s;
+            cursor: pointer;
+            background: $primary;
+            color: $secondary;
+        }
+    }
+}
+
+.writeOrders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 1000px;
+    margin-bottom: 30px;
+
+    h1{
+        color: $primary;
+        margin-bottom: 10px;
+    }
+
+    .row {
+        width: 100%;
+        height: 35px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 20px;
+        font-weight: bolder;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-bottom: 3px;
+        border-radius: 5px;
+
+        &:hover{
+            opacity: 0.6;
+            cursor: pointer;
+        }
+
+        .contractInfo{
+            width: 100px;
+            text-align: center;
+
+            .deleteSubmit{
+                background: $secondary;
+                color: $primary;
+                width: 90px;
+                height: 25px;
+                border: none;
+                outline: none;
+                border-radius: 5px;
+
+                &:hover{
+                    cursor: pointer;
+                    transition: 0.5s;
+                    background: $primary;
+                    color: $secondary;
+                }
+            }
+        }
+
+    }
+
+    .Road{
+        background: blue;
+    }
+
+    .XC{
+        background: green;
+    }
+
+    .Trail{
+        background: brown;
+    }
+
+    .Enduro{
+        background: grey;
+    }
+
+    .Downhill{
+        background: yellow;
+    }
+
+    .Gravel{
+        background: red;
+    }
+
+    .Fatbike{
+        background: blueviolet;
+    }
+}
+
+.sentOrder, .loginForm, .createUser, .changePassword {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+
+    h1{
+        color: $primary;
+        margin-bottom: 10px;
+        font-size: 40px;
+    }
+
+    h2 {
+        margin-bottom: 10px;
+        color: $primary;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        input,
+        select {
+            display: block;
+            width: 350px;
+            height: 40px;
+            font-size: 15px;
+            font-weight: bolder;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: none;
+            outline: none;            
+            background: $primary;
+        }
+
+        input[type="submit"] {
+            width: 150px;
+
+            &:hover{
+                cursor: pointer;
+                transition: 0.5s;
+                background: $secondary;
+                color: $primary;
+            }
+        }
+
+        .validatePassword{
+            display: none;
+            color: $failure;
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 20px;
+        }
+    }
+    
+}
+
+// Message box
+.messageBox{
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 350px;
+    height: 100px;
+    z-index: 500;
+    text-align: center;
+
+    .background{
+        width: 100%;
+        height: 100%;        
+        opacity: 75%;
+        border-radius: 10px; 
+    }
+
+    .success{
+        background: $success;
+    }
+
+    .failure{
+        background: $failure;
+    }
+
+    p{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: max-content;
+        color: $primary;
+        font-size: 20px;
+        font-weight: bolder;    
+    }
+
+    .iconsDiv{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 100;
+        cursor: pointer; 
+
+        img{
+            width: 25px;
+            height: 25px;  
+        }
+    }}

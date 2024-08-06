@@ -1,0 +1,228 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.5)), url("../img/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.container {
+  max-width: 1200px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+}
+.userButtons h1 {
+  color: rgb(233, 224, 179);
+  margin-bottom: 10px;
+  font-size: 40px;
+}
+.userButtons .userButton {
+  display: block;
+  text-decoration: none;
+  color: rgb(233, 224, 179);
+  background: rgb(32, 30, 30);
+  width: 180px;
+  height: 30px;
+  margin-bottom: 5px;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 2px;
+  border-radius: 10px;
+}
+.userButtons .userButton:hover {
+  transition: 0.5s;
+  cursor: pointer;
+  background: rgb(233, 224, 179);
+  color: rgb(32, 30, 30);
+}
+
+.writeOrders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 1000px;
+  margin-bottom: 30px;
+}
+.writeOrders h1 {
+  color: rgb(233, 224, 179);
+  margin-bottom: 10px;
+}
+.writeOrders .row {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: bolder;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 3px;
+  border-radius: 5px;
+}
+.writeOrders .row:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+.writeOrders .row .contractInfo {
+  width: 100px;
+  text-align: center;
+}
+.writeOrders .row .contractInfo .deleteSubmit {
+  background: rgb(32, 30, 30);
+  color: rgb(233, 224, 179);
+  width: 90px;
+  height: 25px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+.writeOrders .row .contractInfo .deleteSubmit:hover {
+  cursor: pointer;
+  transition: 0.5s;
+  background: rgb(233, 224, 179);
+  color: rgb(32, 30, 30);
+}
+.writeOrders .Road {
+  background: blue;
+}
+.writeOrders .XC {
+  background: green;
+}
+.writeOrders .Trail {
+  background: brown;
+}
+.writeOrders .Enduro {
+  background: grey;
+}
+.writeOrders .Downhill {
+  background: yellow;
+}
+.writeOrders .Gravel {
+  background: red;
+}
+.writeOrders .Fatbike {
+  background: blueviolet;
+}
+
+.sentOrder, .loginForm, .createUser, .changePassword {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 600px;
+}
+.sentOrder h1, .loginForm h1, .createUser h1, .changePassword h1 {
+  color: rgb(233, 224, 179);
+  margin-bottom: 10px;
+  font-size: 40px;
+}
+.sentOrder h2, .loginForm h2, .createUser h2, .changePassword h2 {
+  margin-bottom: 10px;
+  color: rgb(233, 224, 179);
+}
+.sentOrder form, .loginForm form, .createUser form, .changePassword form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sentOrder form input,
+.sentOrder form select, .loginForm form input,
+.loginForm form select, .createUser form input,
+.createUser form select, .changePassword form input,
+.changePassword form select {
+  display: block;
+  width: 350px;
+  height: 40px;
+  font-size: 15px;
+  font-weight: bolder;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgb(233, 224, 179);
+}
+.sentOrder form input[type=submit], .loginForm form input[type=submit], .createUser form input[type=submit], .changePassword form input[type=submit] {
+  width: 150px;
+}
+.sentOrder form input[type=submit]:hover, .loginForm form input[type=submit]:hover, .createUser form input[type=submit]:hover, .changePassword form input[type=submit]:hover {
+  cursor: pointer;
+  transition: 0.5s;
+  background: rgb(32, 30, 30);
+  color: rgb(233, 224, 179);
+}
+.sentOrder form .validatePassword, .loginForm form .validatePassword, .createUser form .validatePassword, .changePassword form .validatePassword {
+  display: none;
+  color: rgb(224, 22, 22);
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.messageBox {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px;
+  height: 100px;
+  z-index: 500;
+  text-align: center;
+}
+.messageBox .background {
+  width: 100%;
+  height: 100%;
+  opacity: 75%;
+  border-radius: 10px;
+}
+.messageBox .success {
+  background: rgb(11, 157, 11);
+}
+.messageBox .failure {
+  background: rgb(224, 22, 22);
+}
+.messageBox p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: -moz-max-content;
+  width: max-content;
+  color: rgb(233, 224, 179);
+  font-size: 20px;
+  font-weight: bolder;
+}
+.messageBox .iconsDiv {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 100;
+  cursor: pointer;
+}
+.messageBox .iconsDiv img {
+  width: 25px;
+  height: 25px;
+}/*# sourceMappingURL=main.css.map */

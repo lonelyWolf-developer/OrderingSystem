@@ -1,0 +1,8 @@
+footer {
+  background: rgb(233, 224, 179);
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}/*# sourceMappingURL=footer.css.map */
