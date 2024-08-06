@@ -12,4 +12,18 @@ header {
     justify-content: space-between;
     padding-left: 15px;
     padding-right: 15px;
+
+    .userIcon, .logo{
+        a{
+            text-decoration: none;
+            color: $secondary;
+            font-weight: bolder;
+
+            &:hover{
+                transition: 0.5s;
+                text-decoration: overline;
+                cursor: pointer;
+            }
+        }
+    }
 }
