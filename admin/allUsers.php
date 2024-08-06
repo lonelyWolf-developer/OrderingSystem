@@ -28,7 +28,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="../css/main.css"> -->
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <title>Všichni uživatelé</title>
@@ -42,13 +42,33 @@
             <section class="allUsers">
                 <h1>Všichni uživatelé</h1>
                 <?php if(!empty($allUsers)): ?>
-                    <?php foreach($allUsers as $oneUser): ?>
+                    <?php foreach($allUsers as $oneUser): ?>                        
+                        <?php
+                            $onlyUser = new User();
+                            $onlyUser->id = $oneUser["Id"];
+                            $onlyUser->name = $oneUser["Name"];
+                            $onlyUser->surname = $oneUser["Surname"];
+                            $onlyUser->email = $oneUser["Email"];
+                            $onlyUser->role = $onlyUser->translateUserRole($oneUser["Role"]);
+                            $onlyUser->status = $onlyUser->translateUserStatus($oneUser["Status"]);
+                        ?>                        
+                        
                         <div class="row">
-                            <div class="userInfo"><?= $oneUser["Name"] ?></div>
-                            <div class="userInfo"><?= $oneUser["Surname"] ?></div>
-                            <div class="userInfo"><?= $oneUser["Email"] ?></div>
-                            <div class="userInfo"><?= $oneUser["Role"] ?></div>
-                            <div class="userInfo"><?= $oneUser["Status"] ?></div>
+                            <div class="userInfo"><?= $onlyUser->name ?></div>
+                            <div class="userInfo"><?= $onlyUser->surname ?></div>
+                            <div class="userInfo"><?= $onlyUser->email ?></div>
+                            <div class="userInfo"><?= $onlyUser->role ?></div>
+                            <div class="userInfo"><?= $onlyUser->status ?></div>
+                            <div class="statusButton">
+                                <form action="" method="post">
+                                    <input type="hidden" name="id" value="<?= $onlyUser->id ?>">
+                                    <?php if($onlyUser->status == UserStatus::Normal->name): ?>
+                                        <input type="submit" value="Zablokovat">
+                                    <?php else: ?>
+                                        <input type="submit" value="Odblokovat">
+                                    <?php endif; ?>
+                                </form>
+                            </div>
                         </div>
                     <?php endforeach ?>
                 <?php else: ?>

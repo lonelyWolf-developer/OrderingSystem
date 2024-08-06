@@ -18,8 +18,30 @@ class User{
     public $email;
     public $password;
     public $role;
+    public $status;
 
-   function createUser($connection, $name, $surname, $email, $password, $role, $status = UserStatus::Normal->value){
+   
+    function translateUserRole($input){
+        $roleString = Roles::tryFrom($input);
+
+        if($roleString != null){
+            return $roleString->name;
+        }else{
+            return "uživatel";
+        }
+    }
+
+    function translateUserStatus($input){
+        $statusString = UserStatus::tryFrom($input);
+
+        if($statusString != null){
+            return $statusString->name;
+        }else{
+            return "uživatel";
+        }
+    }
+   
+    function createUser($connection, $name, $surname, $email, $password, $role, $status = UserStatus::Normal->value){
         $sql = "INSERT INTO user (name, surname, email, password, role, status) VALUES (:name, :surname, :email, :password, :role, :status)";
 
         $stmt = $connection->prepare($sql);
