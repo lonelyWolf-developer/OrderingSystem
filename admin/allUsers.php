@@ -21,6 +21,9 @@
         Url::redirectUrl("/OrderingSystem");
     }
 
+    $message = new Message();
+    $message = $message->createMessage(false);
+
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +38,8 @@
 </head>
 <body>
     
+    <?php require "../assets/userMessage.php" ?>
+
     <?php require "../assets/header.php" ?>
 
     <main>
@@ -60,14 +65,20 @@
                             <div class="userInfo roleInfo"><?= $onlyUser->role ?></div>
                             <div class="userInfo"><?= $onlyUser->status ?></div>
                             <div class="userInfo">
-                                <form action="" method="post">
-                                    <input type="hidden" name="id" value="<?= $onlyUser->id ?>">
-                                    <?php if($onlyUser->status == UserStatus::Normal->name): ?>
-                                        <input type="submit" value="Zablokovat" class="statusButton">
-                                    <?php else: ?>
-                                        <input type="submit" value="Odblokovat" class="statusButton">
-                                    <?php endif; ?>
-                                </form>
+                                <?php if($user->id != $onlyUser->id): ?>
+                                    <form action="./changeUserStatus.php" method="post">
+                                        <input type="hidden" name="id" value="<?= $onlyUser->id ?>">
+                                        <?php if($onlyUser->status == UserStatus::Normal->name): ?>
+                                            <input type="hidden" name="status" value="<?= UserStatus::Blocked->value ?>">
+                                            <input type="submit" value="Zablokovat" class="statusButton" id="changeStatusButton">
+                                        <?php else: ?>
+                                            <input type="hidden" name="status" value="<?= UserStatus::Normal->value ?>">
+                                            <input type="submit" value="Odblokovat" class="statusButton" id="changeStatusButton">
+                                        <?php endif; ?>
+                                    </form>
+                                <?php else: ?>
+                                    Můj účet
+                                <?php endif; ?>
                             </div>
                         </div>
                     <?php endforeach ?>
@@ -79,6 +90,9 @@
     </main>
 
     <?php require "../assets/footer.php" ?>
+
+    <script src="../js/messageBox.js"></script>
+    <script src="../js/changeUserStatus.js"></script>
 
 </body>
 </html>

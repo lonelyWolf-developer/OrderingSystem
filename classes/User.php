@@ -166,6 +166,25 @@ class User{
             echo "Typ chyby: " . $e->getMessage();
         }
     }
+
+    function changeUserStatus($connection, $status, $id){
+        $sql = "UPDATE user SET status = :status WHERE id = :id";
+
+        $stmt = $connection->prepare($sql);
+        $stmt->bindValue(":status", $status, PDO::PARAM_INT);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+        try{
+            if($stmt->execute()){
+                return true;
+            }else{
+                throw new Exception("Změna statusu se nezdařila.");
+            }
+        }catch(Exception $e){
+            error_log("Chyba u funkce changeUserStatus\n", 3, "../errors/error.log");
+            echo "Typ chyby: " . $e->getMessage();
+        }
+    }
 }
 
 ?>
