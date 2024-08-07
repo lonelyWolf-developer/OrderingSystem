@@ -59,8 +59,8 @@
             return htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
         }
 
-        public static function readQuery($url, $query){
-            if(str_contains($url, '?')){
+        public static function readOneQuery($url, $query){
+            if(str_contains($url, '?') and str_contains($url, $query)){
                 $components = parse_url($url);
                 parse_str($components['query'], $params);
                 return $params[$query];
@@ -68,6 +68,10 @@
                 return "";
             }          
           
+        }
+
+        public static function readAllQueryes($url){
+
         }
     }
 

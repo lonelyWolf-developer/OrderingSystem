@@ -27,7 +27,7 @@ $contract = new Contract();
 $contracts = $contract->getAllContracts($connection);
 
 $message = new Message();
-if(Url::readQuery($url, "logout") === "0"){
+if(Url::readOneQuery($url, "logout") === "0"){
     $message->createMessageSession("Odhlášení proběhlo úspěšně", MessageType::Success->value);
 }
 $message = $message->createMessage();
