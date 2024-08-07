@@ -11,6 +11,8 @@
     $database = new Database();
     $connection = $database->connectionDB();
 
+    $url = Url::getFullUrl();
+
     $user = new User();
 
     if(Auth::checkRole(Roles::Admin->value)){    
@@ -41,6 +43,13 @@
     <?php require "../assets/userMessage.php" ?>
 
     <?php require "../assets/header.php" ?>
+
+    <?php
+
+        $resultArray = URL::readAllQueryes($url);
+        var_dump($resultArray);
+
+    ?>
 
     <main>
         <div class="container">

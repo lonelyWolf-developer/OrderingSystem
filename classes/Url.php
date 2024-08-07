@@ -71,7 +71,22 @@
         }
 
         public static function readAllQueryes($url){
+            if(str_contains($url, '?')){
+                $components = parse_url($url, PHP_URL_QUERY);
+                parse_str($components, $result);
 
+                foreach($result as $key => $value){
+                    if(str_contains($key, "amp;")){
+                        $result[trim($key, "amp;")] = $result[$key];
+                        unset($result[$key]);
+                    }           
+                    
+                }
+
+                return $result;
+            }else{
+                return "";
+            }
         }
     }
 
