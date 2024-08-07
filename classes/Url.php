@@ -79,8 +79,7 @@
                     if(str_contains($key, "amp;")){
                         $result[trim($key, "amp;")] = $result[$key];
                         unset($result[$key]);
-                    }           
-                    
+                    }         
                 }
 
                 return $result;

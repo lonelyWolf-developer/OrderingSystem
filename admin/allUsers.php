@@ -44,15 +44,25 @@
 
     <?php require "../assets/header.php" ?>
 
-    <?php
-
-        $resultArray = URL::readAllQueryes($url);
-        var_dump($resultArray);
-
-    ?>
-
     <main>
         <div class="container">
+            
+            <form action="" method="post">
+                <input type="text" name="userName">
+                <input type="text" name="userSurname">
+                <input type="text" name="userEmail">
+                <select name="userRole">
+                    <option value="<?= Roles::Admin->value ?>">Admin</option>
+                    <option value="<?= Roles::Craftsman->value ?>">Řemeslník</option>
+                    <option value="<?= Roles::Warehouseman->value ?>">Skladník</option>
+                </select>
+                <select name="userStatus">
+                    <option value="<?= UserStatus::Normal->value ?>">Normal</option>
+                    <option value="<?= UserStatus::Blocked->value ?>">Blocked</option>
+                </select>
+                <input type="submit" value="Filtrovat">
+            </form>
+        
             <section class="allUsers">
                 <h1>Všichni uživatelé</h1>
                 <?php if(!empty($allUsers)): ?>
@@ -68,9 +78,9 @@
                         ?>                        
                         
                         <div class="row">
-                            <div class="userInfo"><?= $onlyUser->name ?></div>
-                            <div class="userInfo"><?= $onlyUser->surname ?></div>
-                            <div class="userInfo emailInfo"><?= $onlyUser->email ?></div>
+                            <div class="userInfo"><?= htmlspecialchars($onlyUser->name) ?></div>
+                            <div class="userInfo"><?= htmlspecialchars($onlyUser->surname) ?></div>
+                            <div class="userInfo emailInfo"><?= htmlspecialchars($onlyUser->email) ?></div>
                             <div class="userInfo roleInfo"><?= $onlyUser->role ?></div>
                             <div class="userInfo"><?= $onlyUser->status ?></div>
                             <div class="userInfo">

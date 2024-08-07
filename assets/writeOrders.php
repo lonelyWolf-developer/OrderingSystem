@@ -12,10 +12,10 @@
             ?>
 
             <div class="row <?= $contract->type ?>">
-                <div class="contractInfo"><?= $contract->orderNumber ?></div>
-                <div class="contractInfo"><?= $contract->type ?></div>
-                <div class="contractInfo"><?= $contract->date ?></div>
-                <div class="contractInfo"><?= $contract->time ?></div>                            
+                <div class="contractInfo"><?= htmlspecialchars($contract->orderNumber) ?></div>
+                <div class="contractInfo"><?= htmlspecialchars($contract->type) ?></div>
+                <div class="contractInfo"><?= htmlspecialchars($contract->date) ?></div>
+                <div class="contractInfo"><?= htmlspecialchars($contract->time) ?></div>                            
                 <div class="contractInfo">                          
                 <?php if (Auth::checkRole(Roles::Warehouseman->value)): ?>
                     <form action="./admin/changeContractStatus.php" method="post">
