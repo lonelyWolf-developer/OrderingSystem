@@ -65,10 +65,72 @@ class User{
         }       
     }
 
-    static function getAllUsers($connection, $collumns = "*"){
+    static function getAllUsers($connection, $collumns = "*", $name = null, $surname = null, $email = null, $role = null, $status = null){
         $sql = "SELECT $collumns FROM user";
+        
+        $querryArray = array();
+        $oneQuery = "";
+        
+        if($name != null){
+            $querryArray["name"] = "name = :name";
+        }
 
-        return $connection->query($sql)->fetchAll();
+        if($surname != null){
+            $querryArray["surname"] = "surname = :surname";
+        }
+
+        if($email != null){
+            $querryArray["email"] = "email = :surname";
+        }
+
+        if(isset($role)){
+            $querryArray["role"] = "role = :role";
+        }
+
+        if(isset($status)){
+            $querryArray["status"] = "status = :status";
+        }
+
+        if(!empty($querryArray)){
+
+            $oneQuery = implode(" AND ", $querryArray);
+            
+            
+            $sql = $sql . " WHERE " . $oneQuery;
+        }      
+
+        $stmt = $connection->prepare($sql);
+        
+        if($name != null){
+            $stmt->bindValue(":name", $name, PDO::PARAM_STR);
+        }
+        
+        if($surname != null){
+            $stmt->bindValue(":surname", $surname, PDO::PARAM_STR);
+        }
+
+        if($email != null){
+            $stmt->bindValue(":email", $email, PDO::PARAM_STR);
+        }
+        
+        if(isset($role)){
+            $stmt->bindValue(":role", $role, PDO::PARAM_INT);
+        }
+
+        if(isset($status)){
+            $stmt->bindValue(":status", $status, PDO::PARAM_INT);
+        }      
+        
+        try{
+            if($stmt->execute()){
+                return $stmt->fetchAll();
+            }else{
+                throw new Exception("Třídění se nezadřilo.");
+            }
+        }catch(Exception $e){
+            error_log($e->getMessage(), 3, "../errors/error.log");
+            echo $e->getMessage();
+        }        
     }
 
     static function authentication($connection, $loginEmail, $loginPassword){
