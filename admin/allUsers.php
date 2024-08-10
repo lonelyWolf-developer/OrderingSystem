@@ -15,6 +15,12 @@
 
     $user = new User();
 
+    // $userName = isset($_SESSION["userName"]) ? $_SESSION["userName"] : null;
+    // $userSurname = isset($_SESSION["userSurname"]) ? $_SESSION["userSurname"] : null;
+    // $userEmail = isset($_SESSION["userEmail"]) ? $_SESSION["userEmail"] : null;
+    // $userRole = isset($_SESSION["userRole"]) ? $_SESSION["userRole"] : null;
+    // $userStatus = isset($_SESSION["userStatus"]) ? $_SESSION["userStatus"] : null;
+
     if(Auth::checkRole(Roles::Admin->value)){    
         $user->id = $_SESSION["logged_user_id"];
         $user->email = $user->getUserEmail($connection, $user->id);
@@ -47,20 +53,23 @@
     <main>
         <div class="container">
             
-            <form action="" method="post">
+            <form action="./searchDatabase.php" method="post">
                 <input type="text" name="userName">
                 <input type="text" name="userSurname">
                 <input type="text" name="userEmail">
                 <select name="userRole">
+                    <option value="<?= null ?>">Nevyplněno</option>
                     <option value="<?= Roles::Admin->value ?>">Admin</option>
                     <option value="<?= Roles::Craftsman->value ?>">Řemeslník</option>
                     <option value="<?= Roles::Warehouseman->value ?>">Skladník</option>
                 </select>
                 <select name="userStatus">
+                    <option value="<?= null ?>">Nevyplněno</option>
                     <option value="<?= UserStatus::Normal->value ?>">Normal</option>
                     <option value="<?= UserStatus::Blocked->value ?>">Blocked</option>
                 </select>
-                <input type="submit" value="Filtrovat">
+                <input type="submit" value="Filtrovat" name="submited">
+                <input type="submit" value="Vyčisit filtr" name="clean">
             </form>
         
             <section class="allUsers">
