@@ -15,11 +15,13 @@
 
     $user = new User();
 
-    $userName = "";
-    $userSurname = "";
-    $userEmail = "";
-    $userRole = null;
-    $userStatus = null;
+    $querry = Url::readAllQueryes($url);    
+
+    $userName = isset($querry["userName"]) ? $querry["userName"] : "";
+    $userSurname = isset($querry["userSurname"]) ? $querry["userSurname"] : "";
+    $userEmail = isset($querry["userEmail"]) ? $querry["userEmail"] : "";
+    $userRole = isset($querry["userRole"]) ? $querry["userRole"] : null;
+    $userStatus = isset($querry["userStatus"]) ? $querry["userStatus"] : null;
 
     if(Auth::checkRole(Roles::Admin->value)){    
         $user->id = $_SESSION["logged_user_id"];
@@ -59,17 +61,17 @@
                 <input type="text" name="userEmail" value="<?= htmlspecialchars($userEmail) ?>">
                 <select name="userRole">
                     <option value="<?= null ?>">Nevyplněno</option>
-                    <option value="<?= Roles::Admin->value ?>" <?php if($userRole === 0) {echo " selected "; } ?>>Admin</option>
-                    <option value="<?= Roles::Craftsman->value ?>" <?php if($userRole === 1) {echo " selected "; } ?>>Řemeslník</option>
-                    <option value="<?= Roles::Warehouseman->value ?>" <?php if($userRole === 2) {echo " selected "; } ?>>Skladník</option>
+                    <option value="<?= Roles::Admin->value ?>" <?php if($userRole === "0") {echo " selected "; } ?>>Admin</option>
+                    <option value="<?= Roles::Craftsman->value ?>" <?php if($userRole === "1") {echo " selected "; } ?>>Řemeslník</option>
+                    <option value="<?= Roles::Warehouseman->value ?>" <?php if($userRole === "2") {echo " selected "; } ?>>Skladník</option>
                 </select>
                 <select name="userStatus">
                     <option value="<?= null ?>">Nevyplněno</option>
-                    <option value="<?= UserStatus::Normal->value ?>" <?php if($userStatus === 0) {echo " selected "; } ?>>Normal</option>
-                    <option value="<?= UserStatus::Blocked->value ?>" <?php if($userStatus === 1) {echo " selected "; } ?>>Blocked</option>
-                </select>
-                <input type="submit" value="Filtrovat" name="submited">
-                <input type="submit" value="Vyčisit filtr" name="clean">
+                    <option value="<?= UserStatus::Normal->value ?>" <?php if($userStatus === "0") {echo " selected "; } ?>>Normal</option>
+                    <option value="<?= UserStatus::Blocked->value ?>" <?php if($userStatus === "1") {echo " selected "; } ?>>Blocked</option>
+                </select>                
+                <input type="submit" value="Odeslat" name="submitButton" id="submit">
+                <a href="/OrderingSystem/admin/allUsers.php">Vyčistit filtr</a>
             </form>
         
             <section class="allUsers">

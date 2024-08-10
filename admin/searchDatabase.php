@@ -7,12 +7,7 @@ require "../classes/Url.php";
 require "../classes/User.php";
 
 if($_SERVER["REQUEST_METHOD"] === "POST" and Auth::checkRole(Roles::Admin->value)){
-    $redirectUrl = "/OrderingSystem/admin/allUsers.php";
-    
-    if(isset($_POST["clean"])){
-        Url::redirectUrl($redirectUrl);
-    }
-    
+    $redirectUrl = "/OrderingSystem/admin/allUsers.php";    
     $queryArray = array();
     $oneQuery = "?";
 
