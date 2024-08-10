@@ -65,21 +65,21 @@ class User{
         }       
     }
 
-    static function getAllUsers($connection, $collumns = "*", $name = null, $surname = null, $email = null, $role = null, $status = null){
+    static function getAllUsers($connection, $collumns = "*", $name = "", $surname = "", $email = "", $role = null, $status = null){
         $sql = "SELECT $collumns FROM user";
         
         $querryArray = array();
         $oneQuery = "";
         
-        if($name != null){
+        if($name != ""){
             $querryArray["name"] = "name = :name";
         }
 
-        if($surname != null){
+        if($surname != ""){
             $querryArray["surname"] = "surname = :surname";
         }
 
-        if($email != null){
+        if($email != ""){
             $querryArray["email"] = "email = :surname";
         }
 
@@ -101,15 +101,15 @@ class User{
 
         $stmt = $connection->prepare($sql);
         
-        if($name != null){
+        if($name != ""){
             $stmt->bindValue(":name", $name, PDO::PARAM_STR);
         }
         
-        if($surname != null){
+        if($surname != ""){
             $stmt->bindValue(":surname", $surname, PDO::PARAM_STR);
         }
 
-        if($email != null){
+        if($email != ""){
             $stmt->bindValue(":email", $email, PDO::PARAM_STR);
         }
         

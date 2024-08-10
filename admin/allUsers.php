@@ -26,13 +26,17 @@
     if(Auth::checkRole(Roles::Admin->value)){    
         $user->id = $_SESSION["logged_user_id"];
         $user->email = $user->getUserEmail($connection, $user->id);
-        $allUsers = $user->getAllUsers($connection);
+        $allUsers = $user->getAllUsers($connection, $columns = "*", $name = $userName, $surname = $userSurname, $email = $userEmail, $role = $userRole, $status = $userStatus);
     }else{
         Url::redirectUrl("/OrderingSystem");
     }
 
     $message = new Message();
     $message = $message->createMessage(false);
+
+    $parseUrl = parse_url($url, PHP_URL_QUERY);
+    // echo $parseUrl;
+    echo urldecode($parseUrl);
 
 ?>
 
