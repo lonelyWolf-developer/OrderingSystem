@@ -80,7 +80,7 @@ class User{
         }
 
         if($email != ""){
-            $querryArray["email"] = "email = :surname";
+            $querryArray["email"] = "email = :email";
         }
 
         if(isset($role)){

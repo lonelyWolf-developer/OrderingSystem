@@ -6,6 +6,13 @@
     }
 }
 
+@mixin SecondHeader{
+    h2 {
+        margin-bottom: 10px;
+        color: $primary;
+    }
+}
+
 @mixin MainSectionSetting(){
     display: flex;
     flex-direction: column;
