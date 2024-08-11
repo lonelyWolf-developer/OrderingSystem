@@ -56,6 +56,30 @@ $message = $message->createMessage();
 
             <?php if($user->id != null): ?>
 
+                <section class="searchDatabase">
+                    <form action="" method="post">
+                        <input type="text" name="filterOrderNumber" placeholder="Číslo objednávky">
+                        <select name="filterType">
+                            <option value="<?= ContractType::Road->value ?>">Silniční</option>
+                            <option value="<?= ContractType::XC->value ?>">Cross Country</option>
+                            <option value="<?= ContractType::Trail->value ?>">Trail</option>
+                            <option value="<?= ContractType::Enduro->value ?>">Enduro</option>
+                            <option value="<?= ContractType::Downhill->value ?>">Downhill</option>
+                            <option value="<?= ContractType::Gravel->value ?>">Gravel</option>
+                            <option value="<?= ContractType::Fatbike->value ?>">Fatbike</option>
+                        </select>
+                        <input type="date" name="filterDate">
+                        <input type="time" name="filterTime">
+                        <input type="text" name="filterUser">                        
+                        <select name="filterStatus">
+                            <option value="<?= ContractStatus::Entered->value ?>">Zadáno</option>
+                            <option value="<?= ContractStatus::Retrieved->value ?>">Vykladněno</option>
+                            <option value="<?= ContractStatus::Cancelled->value ?>">Zrušeno</option>
+                        </select>
+                        <input type="text" name="filterChangingUser">
+                    </form>
+                </section>
+                
                 <?php require "assets/writeOrders.php" ?>
 
                 <?php if($user->role == Roles::Admin->value or $user->role == Roles::Craftsman->value): ?>
