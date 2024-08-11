@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and AUTH::checkRole(Roles::Admin->value
             Url::redirectUrl($returnUrl);
         } 
     }else{
-        Url::redirectUrl("/OrderingSystem/admin/allUsers.php");
+        Url::redirectUrl($returnUrl);
     }
 
 }else{
