@@ -87,6 +87,15 @@
                 return "";
             }
         }
+
+        public static function getEncodeQuery($url){
+            if(str_contains($url, '?')){
+                $parseUrl = parse_url($url, PHP_URL_QUERY);
+                return "?" . urldecode($parseUrl);
+            }else{
+                return "";
+            }
+        }
     }
 
 ?>

@@ -12,6 +12,7 @@
     $connection = $database->connectionDB();
 
     $url = Url::getFullUrl();
+    $encodeQuery = Url::getEncodeQuery($url);
 
     $user = new User();
 
@@ -33,10 +34,6 @@
 
     $message = new Message();
     $message = $message->createMessage(false);
-
-    $parseUrl = parse_url($url, PHP_URL_QUERY);
-    // echo $parseUrl;
-    echo urldecode($parseUrl);
 
 ?>
 
@@ -102,6 +99,7 @@
                                 <?php if($user->id != $onlyUser->id): ?>
                                     <form action="./changeUserStatus.php" method="post">
                                         <input type="hidden" name="id" value="<?= $onlyUser->id ?>">
+                                        <input type="hidden" name="returnQuery" value="<?= $encodeQuery ?>">
                                         <?php if($onlyUser->status == UserStatus::Normal->name): ?>
                                             <input type="hidden" name="status" value="<?= UserStatus::Blocked->value ?>">
                                             <input type="submit" value="Zablokovat" class="statusButton" id="changeStatusButton">

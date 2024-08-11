@@ -21,13 +21,20 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and AUTH::checkRole(Roles::Admin->value
     $user->id = $_POST["id"];
     $user->status = $_POST["status"];
 
+    $returnUrl = "/OrderingSystem/admin/allUsers.php";
+    $returnQuery = $_POST["returnQuery"];
+
+    if($returnQuery != ""){
+        $returnUrl = $returnUrl . $returnQuery;
+    }
+
     if($tUser->id != $user->id){
         if($user->changeUserStatus($connection, $user->status, $user->id)){
             $message->createMessageSession("Status uživatele byl změněn.", MessageType::Success->value);
-            Url::redirectUrl("/OrderingSystem/admin/allUsers.php");
+            Url::redirectUrl($returnUrl);
         }else{
             $message->createMessageSession("Něco se nepovedlo.", MessageType::Failure->value);
-            Url::redirectUrl("/OrderingSystem/admin/allUsers.php");
+            Url::redirectUrl($returnUrl);
         } 
     }else{
         Url::redirectUrl("/OrderingSystem/admin/allUsers.php");
