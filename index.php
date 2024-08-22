@@ -10,10 +10,20 @@ require "./classes/Message.php";
 require "./classes/Url.php";
 
 $url = Url::getFullUrl();
+$encodeQuery = Url::getEncodeQuery($url);
+$query = Url::readAllQueryes($url);
 
 $database = new Database();
 $connection = $database->connectionDB();
 $user = new User();
+
+$filterOrderNumber = isset($query["filterOrderNumber"]) ? $query["filterOrderNumber"] : "";
+$filterType = isset($query["filterType"]) ? $query["filterType"] : "";
+$filterDate = isset($query["filterDate"]) ? $query["filterDate"] : "";
+$filterTime = isset($query["filterTime"]) ? $query["filterTime"] : "";
+$filterUser = isset($query["filterUser"]) ? $query["filterUser"] : "";
+$filterStatus = isset($query["filterStatus"]) ? $query["filterStatus"] : "";
+$filterChangingUser = isset($query["filterChangingUser"]) ? $query["filterChangingUser"] : "";
 
 if(Auth::isLoggedIn()){    
     $user->id = $_SESSION["logged_user_id"];
@@ -58,29 +68,31 @@ $message = $message->createMessage();
 
                 <section class="searchDatabase">
                     <form action="./admin/searchContracts.php" method="post">
-                        <input type="number" name="filterOrderNumber" placeholder="Číslo objednávky">
+                        <input type="number" name="filterOrderNumber" value="<?= htmlspecialchars($filterOrderNumber) ?>" placeholder="Číslo objednávky">
                         <select name="filterType">
                             <option value="<?= null ?>">Typ kola</option>
-                            <option value="<?= ContractType::Road->value ?>">Silniční</option>
-                            <option value="<?= ContractType::XC->value ?>">Cross Country</option>
-                            <option value="<?= ContractType::Trail->value ?>">Trail</option>
-                            <option value="<?= ContractType::Enduro->value ?>">Enduro</option>
-                            <option value="<?= ContractType::Downhill->value ?>">Downhill</option>
-                            <option value="<?= ContractType::Gravel->value ?>">Gravel</option>
-                            <option value="<?= ContractType::Fatbike->value ?>">Fatbike</option>
+                            <option value="<?= ContractType::Road->value ?>" <?php if($filterType === "0") {echo " selected ";} ?>>Silniční</option>
+                            <option value="<?= ContractType::XC->value ?>" <?php if($filterType === "1") {echo " selected ";} ?>>Cross Country</option>
+                            <option value="<?= ContractType::Trail->value ?>" <?php if($filterType === "2") {echo " selected ";} ?>>Trail</option>
+                            <option value="<?= ContractType::Enduro->value ?>" <?php if($filterType === "3") {echo " selected ";} ?>>Enduro</option>
+                            <option value="<?= ContractType::Downhill->value ?>" <?php if($filterType === "4") {echo " selected ";} ?>>Downhill</option>
+                            <option value="<?= ContractType::Gravel->value ?>" <?php if($filterType === "5") {echo " selected ";} ?>>Gravel</option>
+                            <option value="<?= ContractType::Fatbike->value ?>" <?php if($filterType === "6") {echo " selected ";} ?>>Fatbike</option>
                         </select>
-                        <input type="date" name="filterDate">
-                        <input type="time" name="filterTime">
-                        <input type="text" name="filterUser" placeholder="Zadávající uživatel">                        
+                        <input type="date" name="filterDate" value="<?= htmlspecialchars($filterDate) ?>">
+                        <input type="time" name="filterTime" value="<?= htmlspecialchars($filterTime) ?>">
+                        <input type="text" name="filterUser" placeholder="Zadávající uživatel" value="<?= htmlspecialchars($filterUser) ?>">                        
                         <select name="filterStatus">
                             <option value="<?= null ?>">Status zakázky</option>
-                            <option value="<?= ContractStatus::Entered->value ?>">Zadáno</option>
-                            <option value="<?= ContractStatus::Retrieved->value ?>">Vykladněno</option>
-                            <option value="<?= ContractStatus::Cancelled->value ?>">Zrušeno</option>
+                            <option value="<?= ContractStatus::Entered->value ?>" <?php if($filterStatus === "0") {echo " selected ";} ?>>Zadáno</option>
+                            <option value="<?= ContractStatus::Retrieved->value ?>" <?php if($filterStatus === "1") {echo " selected ";} ?>>Vykladněno</option>
+                            <option value="<?= ContractStatus::Cancelled->value ?>" <?php if($filterStatus === "2") {echo " selected ";} ?>>Zrušeno</option>
                         </select>
-                        <input type="text" name="filterChangingUser" placeholder="Ukončující uživatel">
-                        <input type="submit" value="Filtrovat">
-                        <a href="/OrderingSystem">Vyčistit filtr</a>
+                        <input type="text" name="filterChangingUser" placeholder="Ukončující uživatel" value="<?= htmlspecialchars($filterChangingUser) ?>">
+                        <section class="buttons">
+                            <input type="submit" value="Filtrovat">
+                            <a href="/OrderingSystem">Vyčistit filtr</a>
+                        </section>
                     </form>
                 </section>
                 
