@@ -57,9 +57,10 @@ $message = $message->createMessage();
             <?php if($user->id != null): ?>
 
                 <section class="searchDatabase">
-                    <form action="" method="post">
-                        <input type="text" name="filterOrderNumber" placeholder="Číslo objednávky">
+                    <form action="./admin/searchContracts.php" method="post">
+                        <input type="number" name="filterOrderNumber" placeholder="Číslo objednávky">
                         <select name="filterType">
+                            <option value="<?= null ?>">Typ kola</option>
                             <option value="<?= ContractType::Road->value ?>">Silniční</option>
                             <option value="<?= ContractType::XC->value ?>">Cross Country</option>
                             <option value="<?= ContractType::Trail->value ?>">Trail</option>
@@ -70,13 +71,16 @@ $message = $message->createMessage();
                         </select>
                         <input type="date" name="filterDate">
                         <input type="time" name="filterTime">
-                        <input type="text" name="filterUser">                        
+                        <input type="text" name="filterUser" placeholder="Zadávající uživatel">                        
                         <select name="filterStatus">
+                            <option value="<?= null ?>">Status zakázky</option>
                             <option value="<?= ContractStatus::Entered->value ?>">Zadáno</option>
                             <option value="<?= ContractStatus::Retrieved->value ?>">Vykladněno</option>
                             <option value="<?= ContractStatus::Cancelled->value ?>">Zrušeno</option>
                         </select>
-                        <input type="text" name="filterChangingUser">
+                        <input type="text" name="filterChangingUser" placeholder="Ukončující uživatel">
+                        <input type="submit" value="Filtrovat">
+                        <a href="/OrderingSystem">Vyčistit filtr</a>
                     </form>
                 </section>
                 
