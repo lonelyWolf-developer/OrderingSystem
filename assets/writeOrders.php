@@ -1,5 +1,5 @@
 <section class="writeOrders">
-    <h1><?= $statusText ?> objednávky</h1>
+    <h2>Výpis objednávek</h2>
     <?php if (!empty($contracts)): ?>
         <?php foreach ($contracts as $oneContract): ?>
 

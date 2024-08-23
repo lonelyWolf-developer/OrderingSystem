@@ -70,6 +70,7 @@ body{
 .writeOrders {
     @include MainSectionSetting();
     @include MainHeader();
+    @include SecondHeader();
 
     .row {
     @include RowSetting();
@@ -259,6 +260,7 @@ body{
             font-size: 20px;
             display: block;
             padding: 2px;
+            margin-bottom: 10px;
 
             &:hover{
                 transition: 0.5s;
@@ -280,6 +282,13 @@ body{
         .buttons{
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .formRow{
+            display: flex;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
         }
