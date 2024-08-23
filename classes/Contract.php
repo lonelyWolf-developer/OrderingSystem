@@ -249,8 +249,13 @@ class Contract {
 
         try{
             if($stmt->execute()){
-                $result = $stmt->fetch();                
-                return $result[0];
+                $result = $stmt->fetch();
+                if(isset($result[0])){
+                    return $result[0];
+                }else{
+                    return null;
+                }             
+                
             }
         }catch(Exception $e){
             error_log($e->getMessage(), 3, "../errors/error.log");
