@@ -18,11 +18,11 @@ $connection = $database->connectionDB();
 $user = new User();
 
 $filterOrderNumber = isset($query["filterOrderNumber"]) ? $query["filterOrderNumber"] : "";
-$filterType = isset($query["filterType"]) ? $query["filterType"] : "";
+$filterType = isset($query["filterType"]) ? $query["filterType"] : null;
 $filterDate = isset($query["filterDate"]) ? $query["filterDate"] : "";
 $filterTime = isset($query["filterTime"]) ? $query["filterTime"] : "";
 $filterUser = isset($query["filterUser"]) ? $query["filterUser"] : "";
-$filterStatus = isset($query["filterStatus"]) ? $query["filterStatus"] : "";
+$filterStatus = isset($query["filterStatus"]) ? $query["filterStatus"] : "0";
 $filterChangingUser = isset($query["filterChangingUser"]) ? $query["filterChangingUser"] : "";
 
 if(Auth::isLoggedIn()){    
@@ -34,13 +34,24 @@ if(Auth::isLoggedIn()){
 }
 
 $contract = new Contract();
-$contracts = $contract->getAllContracts($connection);
+$contracts = $contract->getAllContracts($connection, $columns = "*", $orderNumber = $filterOrderNumber, $type = $filterType, $date = $filterDate, $time = $filterTime, $fUser = $filterUser, $status = $filterStatus, $changingUser = $filterChangingUser);
+// $contracts = $contract->getAllContracts($connection);
 
 $message = new Message();
 if(Url::readOneQuery($url, "logout") === "0"){
     $message->createMessageSession("Odhlášení proběhlo úspěšně", MessageType::Success->value);
 }
 $message = $message->createMessage();
+
+$statusText = "Zadané";
+
+switch ($filterStatus) {
+    case "1":
+        $statusText = "Vyskladněné";
+        break;
+    case "2":
+        $statusText = "Zrušené";
+}
 
 ?>
 
@@ -68,7 +79,7 @@ $message = $message->createMessage();
 
                 <section class="searchDatabase">
                     <form action="./admin/searchContracts.php" method="post">
-                        <input type="number" name="filterOrderNumber" value="<?= htmlspecialchars($filterOrderNumber) ?>" placeholder="Číslo objednávky">
+                        <input type="text" name="filterOrderNumber" value="<?= htmlspecialchars($filterOrderNumber) ?>" placeholder="Číslo objednávky">
                         <select name="filterType">
                             <option value="<?= null ?>">Typ kola</option>
                             <option value="<?= ContractType::Road->value ?>" <?php if($filterType === "0") {echo " selected ";} ?>>Silniční</option>
@@ -83,9 +94,9 @@ $message = $message->createMessage();
                         <input type="time" name="filterTime" value="<?= htmlspecialchars($filterTime) ?>">
                         <input type="text" name="filterUser" placeholder="Zadávající uživatel" value="<?= htmlspecialchars($filterUser) ?>">                        
                         <select name="filterStatus">
-                            <option value="<?= null ?>">Status zakázky</option>
+                            <!-- <option value="<?= null ?>">Status zakázky</option> -->
                             <option value="<?= ContractStatus::Entered->value ?>" <?php if($filterStatus === "0") {echo " selected ";} ?>>Zadáno</option>
-                            <option value="<?= ContractStatus::Retrieved->value ?>" <?php if($filterStatus === "1") {echo " selected ";} ?>>Vykladněno</option>
+                            <option value="<?= ContractStatus::Retrieved->value ?>" <?php if($filterStatus === "1") {echo " selected ";} ?>>Vyskladněno</option>
                             <option value="<?= ContractStatus::Cancelled->value ?>" <?php if($filterStatus === "2") {echo " selected ";} ?>>Zrušeno</option>
                         </select>
                         <input type="text" name="filterChangingUser" placeholder="Ukončující uživatel" value="<?= htmlspecialchars($filterChangingUser) ?>">

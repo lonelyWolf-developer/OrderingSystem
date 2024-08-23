@@ -72,10 +72,100 @@ class Contract {
         }
     }
 
-    function getAllContracts($connection, $columns = "*", $status = 0){
-        $sql = "SELECT $columns FROM product WHERE status = $status ORDER BY Date, Time, Type";
+    function getAllContracts($connection, $columns = "*", $orderNumber = "", $type = null, $date = "", $time = "", $fUser = "", $status = null, $changingUser = ""){
+        $sql = "SELECT $columns FROM product";
 
-        return $connection->query($sql)->fetchAll();
+        $querryArray = array();
+        $oneQuery = "";
+
+        if($orderNumber != ""){
+            $querryArray["orderNumber"] = "orderNumber = :orderNumber";
+        }
+
+        if(isset($type)){
+            $querryArray["type"] = "type = :type";
+        }
+
+        if($date != ""){
+            $querryArray["date"] = "date = :date";
+        }
+
+        if($time != ""){
+            $querryArray["time"] = "time = :time";
+        }
+
+        if($fUser != ""){
+            $userId = Contract::getIdFromUserEmail($connection, $fUser);
+
+            if($userId != null){
+                $querryArray["user"] = "user = :user";
+                $fUser = $userId;
+            }else{
+                $fUser = null;
+            }         
+        }
+
+        if(isset($status)){
+            $querryArray["status"] = "status = :status";
+        }
+
+        if($changingUser != ""){
+            $userId = Contract::getIdFromUserEmail($connection, $changingUser);
+
+            if($userId != null){
+                $querryArray["changingUser"] = "changingUser = :changingUser";
+                $changingUser = $userId;
+            }else{
+                $changingUser = null;
+            }  
+        }
+
+        if(!empty($querryArray)){
+            $oneQuery = implode(" AND ", $querryArray);
+
+            $sql = $sql . " WHERE " . $oneQuery;
+        }
+
+        $stmt = $connection->prepare($sql);
+
+        if($orderNumber != ""){
+            $stmt->bindValue(":orderNumber", $orderNumber, PDO::PARAM_INT);
+        }
+
+        if(isset($type)){
+            $stmt->bindValue(":type", $type, PDO::PARAM_INT);
+        }
+
+        if($date != ""){
+            $stmt->bindValue(":date", $date, PDO::PARAM_STR);
+        }
+
+        if($time != ""){
+            $stmt->bindValue(":time", $time, PDO::PARAM_STR);
+        }
+
+        if($fUser != null){
+            $stmt->bindValue(":user", $fUser, PDO::PARAM_INT);
+        }
+
+        if(isset($status)){
+            $stmt->bindValue(":status", $status, PDO::PARAM_INT);
+        }
+
+        if($changingUser != null){
+            $stmt->bindValue(":changingUser", $changingUser, PDO::PARAM_INT);
+        }
+
+        try{
+            if($stmt->execute()){
+                return $stmt->fetchAll();
+            }else{
+                throw new Exception("Třídění se nezadařilo.");
+            }
+        }catch(Exception $e){
+            error_log($e->getMessage(), 3, "../errors/error.log");
+            echo $e->getMessage();
+        } 
     }
     
     function deleteContract($connection, $id){
@@ -139,6 +229,23 @@ class Contract {
 
         $stmt = $connection->prepare($sql);
         $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+        try{
+            if($stmt->execute()){
+                $result = $stmt->fetch();                
+                return $result[0];
+            }
+        }catch(Exception $e){
+            error_log($e->getMessage(), 3, "../errors/error.log");
+            echo $e->getMessage();
+        }
+    }
+
+    private static function getIdFromUserEmail($connection, $email){
+        $sql = "SELECT id FROM user WHERE email = :email";
+
+        $stmt = $connection->prepare($sql);
+        $stmt->bindValue(":email", $email, PDO::PARAM_STR);
 
         try{
             if($stmt->execute()){

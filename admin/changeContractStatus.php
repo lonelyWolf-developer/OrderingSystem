@@ -22,6 +22,13 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and Auth::isLoggedIn()){
     $contract->status = $_POST["Status"];
     $contract->changingUser = $_POST["ChangingUser"];
 
+    $returnUrl = "/OrderingSystem";
+    $returnQuery = $_POST["ReturnQuery"];
+
+    if($returnQuery != ""){
+        $returnUrl = $returnUrl . $returnQuery;
+    }
+
     if($contract->changeStatus($connection, $contract->id, $contract->status, $contract->changingUser)){
         $message->createMessageSession("Objednávka byla úspěšně smazána.", MessageType::Success->value);
         
@@ -43,10 +50,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and Auth::isLoggedIn()){
 
         $email->sentEmail($email);        
 
-        Url::redirectUrl("/OrderingSystem");
+        Url::redirectUrl($returnUrl);
     }else{
         $message->createMessageSession("Jejda, něco se nepovedlo.", MessageType::Failure->value);
-        Url::redirectUrl("/OrderingSystem");
+        Url::redirectUrl($returnUrl);
     }
 }else{
     Url::redirectUrl("/OrderingSystem");

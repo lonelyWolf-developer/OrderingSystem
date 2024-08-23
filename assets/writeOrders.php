@@ -1,5 +1,5 @@
 <section class="writeOrders">
-    <h1>Zadané objednávky</h1>
+    <h1><?= $statusText ?> objednávky</h1>
     <?php if (!empty($contracts)): ?>
         <?php foreach ($contracts as $oneContract): ?>
 
@@ -41,6 +41,7 @@
                                 <input type="hidden" name="Id" value="<?= $contract->id ?>">
                                 <input type="hidden" name="Status" value="<?= ContractStatus::Retrieved->value ?>">
                                 <input type="hidden" name="ChangingUser" value="<?= $user->id ?>">
+                                <input type="hidden" name="ReturnQuery" value="<?= $encodeQuery ?>">
                                 <input type="submit" value="Vyskladněno" id="deleteContractButton" class="deleteSubmit">
                             </form>
                         <?php elseif(Auth::checkRole(Roles::Admin->value) or Auth::checkRole(Roles::Craftsman->value)): ?>
@@ -48,6 +49,7 @@
                                 <input type="hidden" name="Id" value="<?= $contract->id ?>">
                                 <input type="hidden" name="Status" value="<?= ContractStatus::Cancelled->value ?>">
                                 <input type="hidden" name="ChangingUser" value="<?= $user->id ?>">
+                                <input type="hidden" name="ReturnQuery" value="<?= $encodeQuery ?>">
                                 <input type="submit" value="Zrušit" id="deleteContractButton" class="deleteSubmit">
                             </form>
                         <?php endif; ?>                
