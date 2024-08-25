@@ -40,4 +40,9 @@
   .messageBox {
     width: 285px;
   }
+  header {
+    flex-direction: column;
+    justify-content: space-around;
+    height: 70px;
+  }
 }/*# sourceMappingURL=queryes.css.map */
