@@ -40,7 +40,7 @@
     
     <?php require "../assets/userMessage.php" ?>
 
-    <?php require "../assets/header.php" ?>
+    <?php require "../assets/adminHeader.php" ?>
 
     <main>
         <div class="container">

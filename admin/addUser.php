@@ -32,7 +32,7 @@
     <title>Přidání uživatele</title>
 </head>
 <body>
-    <?php require "../assets/header.php" ?>
+    <?php require "../assets/adminHeader.php" ?>
 
     <main>
         <div class="container">
