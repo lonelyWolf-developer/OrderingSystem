@@ -2,8 +2,11 @@
   .searchDatabase {
     width: 800px;
   }
-  .writeOrders {
+  .writeOrders, .allUsers {
     width: 800px;
+  }
+  .inputs {
+    flex-direction: column !important;
   }
 }
 @media (max-width: 810px) {
@@ -13,15 +16,15 @@
   .searchDatabase .formRow {
     flex-direction: column !important;
   }
-  .writeOrders {
+  .writeOrders, .allUsers {
     width: 250px;
   }
-  .writeOrders .row {
+  .writeOrders .row, .allUsers .row {
     flex-direction: column;
     height: 180px;
     justify-content: space-around;
   }
-  .writeOrders .row .smallRow {
+  .writeOrders .row .smallRow, .allUsers .row .smallRow {
     width: 240px;
   }
 }

@@ -3,8 +3,12 @@
         width: 800px;
     }
 
-    .writeOrders{
+    .writeOrders, .allUsers{
         width: 800px;
+    }
+
+    .inputs{
+        flex-direction: column !important;
     }
 }
 
@@ -17,7 +21,7 @@
         }
     }
 
-    .writeOrders{
+    .writeOrders, .allUsers{
         width: 250px;
 
         .row{
