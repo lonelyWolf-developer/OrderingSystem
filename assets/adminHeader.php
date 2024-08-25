@@ -1,6 +1,6 @@
 <header>
-        <div class="logo">
-            <a href="../">Ještěrka</a>
+        <div class="logo logoSize">
+            <a href="/OrderingSystem"><img src="../img/ForkliftSmall.png" alt="Forklift"> Ještěrka</a>
         </div>
 
         <?php if($user->id != null): ?>            
