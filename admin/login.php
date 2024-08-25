@@ -33,10 +33,10 @@
             $_SESSION["role"] = $user->getUserRole($conn, $user->id);
 
             $message->createMessageSession("Přihlášení proběhlo úspěšně.", MessageType::Success->value);
-            Url::redirectUrl("/OrderingSystem");
+            Url::redirectUrl("");
         }else{
             $message->createMessageSession("Zkus to znovu.", MessageType::Failure->value);
-            Url::redirectUrl("/OrderingSystem");
+            Url::redirectUrl("");
         }
     }
 

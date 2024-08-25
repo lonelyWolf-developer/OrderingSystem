@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and AUTH::checkRole(Roles::Admin->value
     $user->id = $_POST["id"];
     $user->status = $_POST["status"];
 
-    $returnUrl = "/OrderingSystem/admin/allUsers.php";
+    $returnUrl = "/admin/allUsers.php";
     $returnQuery = $_POST["returnQuery"];
 
     if($returnQuery != ""){
@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and AUTH::checkRole(Roles::Admin->value
     }
 
 }else{
-    Url::redirectUrl("/OrderingSystem");
+    Url::redirectUrl("");
 }
 
 ?>

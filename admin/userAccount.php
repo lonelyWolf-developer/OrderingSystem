@@ -9,7 +9,7 @@
     require "../classes/Database.php";
 
     if(!Auth::isLoggedIn()){
-        Url::redirectUrl("/OrderingSystem");
+        Url::redirectUrl("");
     }
 
     $message = new Message();

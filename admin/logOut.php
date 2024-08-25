@@ -8,7 +8,7 @@
     session_start();
 
     if(!Auth::isLoggedIn()){
-        Url::redirectUrl("/OrderingSystem");
+        Url::redirectUrl("");
     }
 
     $message = new Message();
@@ -30,5 +30,5 @@
     session_destroy();
 
     // Přesměrování na jinou url adresu    
-    Url::redirectUrl("/OrderingSystem?logout=0");
+    Url::redirectUrl("?logout=0");
 ?>

@@ -7,7 +7,7 @@ require "../classes/Url.php";
 require "../classes/Contract.php";
 
 if($_SERVER["REQUEST_METHOD"] === "POST" and Auth::isLoggedIn()){
-    $redirectUrl = "/OrderingSystem";    
+    $redirectUrl = "";    
     $queryArray = array();
     $oneQuery = "?";
 
@@ -56,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and Auth::isLoggedIn()){
     Url::redirectUrl($redirectUrl);
 
 }else{
-    Url::redirectUrl("/OrderingSystem");
+    Url::redirectUrl("");
 }
 
 ?>

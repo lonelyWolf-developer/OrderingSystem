@@ -39,14 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             $email->sentEmail($email);
             
-            Url::redirectUrl("/OrderingSystem");
+            Url::redirectUrl("");
         } else {
             $message->createMessageSession("Jejda, něco se pokazilo.", MessageType::Failure->value);
-            Url::redirectUrl("/OrderingSystem");
+            Url::redirectUrl("");
         }
     }else{
         $message->createMessageSession("Tato zakázka již byla zadána.", MessageType::Failure->value);
-        Url::redirectUrl("/OrderingSystem");
+        Url::redirectUrl("");
     }
 
 }

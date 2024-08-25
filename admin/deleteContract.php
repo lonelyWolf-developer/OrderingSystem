@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id = $_POST["Id"];
 
     if($contract->deleteContract($connection, $id)){
-        Url::redirectUrl("/OrderingSystem");
+        Url::redirectUrl("");
     }
 }
 

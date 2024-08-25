@@ -29,7 +29,7 @@
         $user->email = $user->getUserEmail($connection, $user->id);
         $allUsers = $user->getAllUsers($connection, $columns = "*", $name = $userName, $surname = $userSurname, $email = $userEmail, $role = $userRole, $status = $userStatus);
     }else{
-        Url::redirectUrl("/OrderingSystem");
+        Url::redirectUrl("");
     }
 
     $message = new Message();
@@ -80,7 +80,7 @@
                     
                     <section class="buttons">
                         <input type="submit" value="Filtrovat" name="submitButton" id="submit">
-                        <a href="/OrderingSystem/admin/allUsers.php">Vyčistit filtr</a>  
+                        <a href="/admin/allUsers.php">Vyčistit filtr</a>  
                     </section>
                 </form>
             </section>

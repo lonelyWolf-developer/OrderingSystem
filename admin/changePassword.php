@@ -23,15 +23,15 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and Auth::isLoggedIn()){
 
     if(User::authentication($connection, $user->email, $user->password) and $user->updatePassword($connection, $user->id, $newPassword)){
         $message->createMessageSession("Heslo bylo úspěšně změněno.", MessageType::Success->value);
-        Url::redirectUrl("/OrderingSystem/admin/userAccount.php");      
+        Url::redirectUrl("/admin/userAccount.php");      
     }else{
         $message->createMessageSession("Zkus to znovu.", MessageType::Failure->value);
-        Url::redirectUrl("/OrderingSystem/admin/changePasswordForm.php");
+        Url::redirectUrl("/admin/changePasswordForm.php");
     }
 
 
 }else{
-    Url::redirectUrl("/OrderingSystem");
+    Url::redirectUrl("");
 }
 
 ?>

@@ -28,10 +28,10 @@
 
         if(!empty($createdUser->id)){
             $message->createMessageSession("Uživatel byl úspěšně vytvořen.", MessageType::Success->value);
-            Url::redirectUrl("/OrderingSystem/admin/userAccount.php");
+            Url::redirectUrl("/admin/userAccount.php");
         }else{
             $message->createMessageSession("Něco se nepovedlo.", MessageType::Failure->value);
-            Url::redirectUrl("/OrderingSystem/admin/userAccount.php");
+            Url::redirectUrl("/admin/userAccount.php");
         }
     }else{
         echo "Nepovolený přístup!!!";

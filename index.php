@@ -111,7 +111,7 @@ switch ($filterStatus) {
 
                         <section class="buttons">
                             <input type="submit" value="Filtrovat">
-                            <a href="/OrderingSystem">Vyčistit filtr</a>
+                            <a href="">Vyčistit filtr</a>
                         </section>
                     </form>
                 </section>

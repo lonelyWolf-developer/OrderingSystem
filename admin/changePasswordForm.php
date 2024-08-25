@@ -8,7 +8,7 @@ require "../classes/Auth.php";
 require "../classes/Message.php";
 
 if(!Auth::isLoggedIn()){
-    Url::redirectUrl("/OrderingSystem");
+    Url::redirectUrl("");
 }
 
 $database = new Database();

@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and Auth::isLoggedIn()){
     $contract->status = $_POST["Status"];
     $contract->changingUser = $_POST["ChangingUser"];
 
-    $returnUrl = "/OrderingSystem";
+    $returnUrl = "";
     $returnQuery = $_POST["ReturnQuery"];
 
     if($returnQuery != ""){
@@ -56,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and Auth::isLoggedIn()){
         Url::redirectUrl($returnUrl);
     }
 }else{
-    Url::redirectUrl("/OrderingSystem");
+    Url::redirectUrl("");
 }
 
 

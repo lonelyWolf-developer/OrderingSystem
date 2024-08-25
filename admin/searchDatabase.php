@@ -7,7 +7,7 @@ require "../classes/Url.php";
 require "../classes/User.php";
 
 if($_SERVER["REQUEST_METHOD"] === "POST" and Auth::checkRole(Roles::Admin->value)){
-    $redirectUrl = "/OrderingSystem/admin/allUsers.php";    
+    $redirectUrl = "/admin/allUsers.php";    
     $queryArray = array();
     $oneQuery = "?";
 
@@ -48,7 +48,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST" and Auth::checkRole(Roles::Admin->value
     Url::redirectUrl($redirectUrl);
 
 }else{
-    Url::redirectUrl("/OrderingSystem");
+    Url::redirectUrl("");
 }
 
 ?>
