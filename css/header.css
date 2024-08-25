@@ -18,4 +18,12 @@ header .userIcon a:hover, header .logo a:hover {
   transition: 0.5s;
   text-decoration: overline;
   cursor: pointer;
+}
+header .logoSize a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  height: 40px;
+  width: 100px;
 }/*# sourceMappingURL=header.css.map */

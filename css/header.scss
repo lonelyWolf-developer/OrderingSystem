@@ -26,4 +26,15 @@ header {
             }
         }
     }
+
+    .logoSize{
+        a{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            height: 40px;
+            width: 100px;
+        }
+    }
 }

@@ -34,13 +34,15 @@ $message = $message->createMessage(false);
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/queryes.css">
+
+    <link rel="shortcut icon" href="../img/Forklift.ico" type="image/x-icon">
     <title>Změna hesla</title>
 </head>
 
 <body>   
     <?php require "../assets/userMessage.php" ?>
    
-    <?php require "../assets/header.php" ?>
+    <?php require "../assets/adminHeader.php" ?>
 
     <main>
         <div class="container">
