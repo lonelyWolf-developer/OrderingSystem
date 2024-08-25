@@ -33,6 +33,7 @@ $message = $message->createMessage(false);
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/queryes.css">
     <title>Změna hesla</title>
 </head>
 

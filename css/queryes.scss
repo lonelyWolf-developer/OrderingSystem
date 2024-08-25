@@ -33,13 +33,13 @@
 }
 
 @media (max-width: 640px){
-    .loginForm, .sentOrder{
+    .loginForm, .sentOrder, .changePassword, .createUser{
         width: 400px;
     }
 }
 
 @media (max-width: 405px){
-    .loginForm, .sentOrder{
+    .loginForm, .sentOrder, .changePassword, .createUser{
         width: 280px;
 
         form{
@@ -57,5 +57,9 @@
         flex-direction: column;
         justify-content: space-around;
         height: 70px;
+    }
+
+    .userButtons{
+        width: 250px;
     }
 }

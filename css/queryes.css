@@ -26,15 +26,15 @@
   }
 }
 @media (max-width: 640px) {
-  .loginForm, .sentOrder {
+  .loginForm, .sentOrder, .changePassword, .createUser {
     width: 400px;
   }
 }
 @media (max-width: 405px) {
-  .loginForm, .sentOrder {
+  .loginForm, .sentOrder, .changePassword, .createUser {
     width: 280px;
   }
-  .loginForm form input, .loginForm form select, .sentOrder form input, .sentOrder form select {
+  .loginForm form input, .loginForm form select, .sentOrder form input, .sentOrder form select, .changePassword form input, .changePassword form select, .createUser form input, .createUser form select {
     width: 250px;
   }
   .messageBox {
@@ -44,5 +44,8 @@
     flex-direction: column;
     justify-content: space-around;
     height: 70px;
+  }
+  .userButtons {
+    width: 250px;
   }
 }/*# sourceMappingURL=queryes.css.map */
