@@ -1,13 +1,40 @@
+@media (max-width: 1010px) {
+  .searchDatabase {
+    width: 800px;
+  }
+  .writeOrders {
+    width: 800px;
+  }
+}
+@media (max-width: 810px) {
+  .searchDatabase {
+    width: 250px;
+  }
+  .searchDatabase .formRow {
+    flex-direction: column !important;
+  }
+  .writeOrders {
+    width: 250px;
+  }
+  .writeOrders .row {
+    flex-direction: column;
+    height: 180px;
+    justify-content: space-around;
+  }
+  .writeOrders .row .smallRow {
+    width: 240px;
+  }
+}
 @media (max-width: 640px) {
-  .loginForm {
+  .loginForm, .sentOrder {
     width: 400px;
   }
 }
 @media (max-width: 405px) {
-  .loginForm {
+  .loginForm, .sentOrder {
     width: 280px;
   }
-  .loginForm form input {
+  .loginForm form input, .loginForm form select, .sentOrder form input, .sentOrder form select {
     width: 250px;
   }
   .messageBox {
