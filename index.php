@@ -64,7 +64,8 @@ switch ($filterStatus) {
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/footer.css">
-    <title>Objednávkový systém</title>
+    <link rel="stylesheet" href="./css/queryes.css">
+    <title>Ještěrka</title>
 </head>
 
 <body>

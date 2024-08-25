@@ -1,6 +1,6 @@
 <header>
         <div class="logo">
-            <a href="/OrderingSystem">Objednávkový systém</a>
+            <a href="/OrderingSystem">Ještěrka</a>
         </div>
 
         <?php if($user->id != null): ?>            

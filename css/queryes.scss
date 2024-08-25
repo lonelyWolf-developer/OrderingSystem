@@ -1,0 +1,21 @@
+@media (max-width: 640px){
+    .loginForm{
+        width: 400px;
+    }
+}
+
+@media (max-width: 405px){
+    .loginForm{
+        width: 280px;
+
+        form{
+            input{
+                width: 250px;
+            }
+        }
+    }
+
+    .messageBox{
+        width: 285px;
+    }
+}

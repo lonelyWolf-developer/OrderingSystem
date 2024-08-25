@@ -1,0 +1,16 @@
+@media (max-width: 640px) {
+  .loginForm {
+    width: 400px;
+  }
+}
+@media (max-width: 405px) {
+  .loginForm {
+    width: 280px;
+  }
+  .loginForm form input {
+    width: 250px;
+  }
+  .messageBox {
+    width: 285px;
+  }
+}/*# sourceMappingURL=queryes.css.map */
